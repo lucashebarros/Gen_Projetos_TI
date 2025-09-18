@@ -75,6 +75,46 @@ async function carregarProjetos() {
 async function atualizarCampo(id, coluna, valor) {
     console.log(`Atualizando projeto ${id}, coluna ${coluna} para: "${valor}"`);
 
+/**
+ * Função para ADICIONAR um novo projeto no Supabase.
+ */
+async function adicionarProjeto(event) {
+    event.preventDefault(); // Impede o recarregamento da página
+
+    const form = event.target;
+    const nomeInput = form.querySelector('#nome');
+    const nomeProjeto = nomeInput.value;
+
+    if (!nomeProjeto) {
+        alert('Por favor, digite o nome do projeto.');
+        return;
+    }
+
+    // Insere o novo projeto na tabela 'projetos'
+    const { error } = await supabaseClient
+        .from('projetos')
+        .insert([
+            { nome: nomeProjeto, situacao: 'Novo', prioridade: 'Média' } // Valores iniciais padrão
+        ]);
+
+    if (error) {
+        console.error('Erro ao adicionar projeto:', error);
+        alert('Falha ao adicionar o projeto.');
+    } else {
+        console.log('Projeto adicionado com sucesso!');
+        form.reset(); // Limpa o formulário
+        carregarProjetos(); // Recarrega a lista de projetos para mostrar o novo
+    }
+}
+
+// 4. Carrega os projetos e configura o formulário quando a página estiver pronta
+document.addEventListener('DOMContentLoaded', () => {
+    carregarProjetos();
+
+    // Configura o formulário de adição
+    const addForm = document.getElementById('add-project-form');
+    addForm.addEventListener('submit', adicionarProjeto);
+});
     // Usa a variável corrigida 'supabaseClient'
     const { error } = await supabaseClient
         .from('projetos')
