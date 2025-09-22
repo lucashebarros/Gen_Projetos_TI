@@ -1,7 +1,7 @@
 // 1. Configuração do Cliente Supabase
 // Vá em "Project Settings" > "API" no seu painel Supabase para encontrar essas informações.
 const SUPABASE_URL = 'https://rprwkinapuwsdpiifrdl.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJwcndraW5hcHV3c2RwaWlmcmRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgyMDQ4NjAsImV4cCI6MjA3Mzc4MDg2MH0.enGl5j313BI8cMxe6soGhViHd6667z8usxtJXPR2F9k';
+const SUPABASE_ANON_KEY = 'sb_publishable_BrEfYP8clpEXXB8WK1iXvQ_Zei11Yjn';
 
 // Inicializa o cliente Supabase usando o objeto global fornecido pelo CDN
 const { createClient } = supabase;
